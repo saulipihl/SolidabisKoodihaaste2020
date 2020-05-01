@@ -1,0 +1,23 @@
+<div id="map-container-div">
+  <div *ngIf="loading" id="loading-text-div"><span>Tietoja ladataan, odotahan hetki. <mat-icon class="loading-icon">refresh</mat-icon></span></div>
+  <div *ngIf="!loading">
+      <div id="map-draggable-div" >
+          <div>
+            <div class="bus-stop" *ngFor="let stop of busStops" 
+            [style.left]="stop.location ? (stop.location.x + 'px') : '-50px'"
+            [style.top]="stop.location ? (stop.location.y + 'px') : '-50px'">
+            <div class="bus-stop-name-div">
+                {{stop.Name}}
+            </div>
+          </div>
+          </div>
+          
+          <img id="map-image"draggable="false" src="assets/images/map.jpg">
+        </div>
+        <div id="zoom-button-div">
+            <button id="zoom-add-button" (click)="zoomIn()" mat-button><mat-icon>add</mat-icon></button>
+            <button id="zoom-remove-button" (click)="zoomOut()" mat-button><mat-icon>remove</mat-icon></button>
+        </div>  
+  </div>
+  <div *ngIf="showUserZoomError" id="user-zoom-error-div"><span>Sivumme ovat vielä hieman kankeat. Saattat olla niin etänä kartasta kuin mahdollista... Tai siirry vähän luoteeseen päin ja zoomaa ulospäin...</span></div>
+</div>

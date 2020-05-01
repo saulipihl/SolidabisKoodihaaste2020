@@ -1,0 +1,36 @@
+<div class="guidance-box-container">
+    <button mat-button id="toggle-guidance-box-text-button" (click)="toggleShowText()">
+        <mat-icon *ngIf="showText">keyboard_arrow_up</mat-icon>
+        <mat-icon *ngIf="!showText">keyboard_arrow_down</mat-icon>
+    </button>
+    <div *ngIf="showText" id="guidance-text-div">
+            <h3>Tervetuloa reittioppaaseen!</h3>
+            <p>Löydä nopein reitti kahden pysäkin välillä! Kirjoita alla oleviin kenttiin haluamasi välin pysäkit, ja saat selville kätevimmän reitin.</p>
+            <p>Pahoittelemme, että kartta näyttää ehkä hieman siltä, että olemme sen netistä ottaneet. Kyseessä on vain tilapäinen ratkaisu.</p>
+            <p>Lisäksi sivustomme on tällä hetkellä testattu toimivaksi vain Chromella. Emme suosittele sivun avaamista mobiililaitteilla, se ei ole kaunista katsottavaa.</p>
+
+            <div>
+                    <span>Lähtöpysäkki: </span><input matInput placeholder="Lähtöpysäkki" 
+                    [(ngModel)]="stopData.fromStop" (blur)="validateStop('fromStop', stopData.fromStop)">
+                    <span>Päätepysäkki: </span><input matInput placeholder="Päätepysäkki" 
+                    [(ngModel)]="stopData.toStop" (blur)="validateStop('toStop', stopData.toStop)">
+            </div>
+            
+            <span id="stop-error-message" *ngIf="stopErrorMessage.length > 0">{{stopErrorMessage}}</span>
+            <button id="calculate-route-button" mat-button 
+                [disabled]="!stopData.fromStopValidated || !stopData.toStopValidated || calculatingRoute"
+                (click)="calculateRoute()">
+                Hae reitti <span *ngIf="calculatingRoute"><mat-icon class="loading-icon">refresh</mat-icon></span>
+            </button>
+            <div *ngIf="routeList !== null && routeList.length > 0">
+                    <hr/>
+                    <div class="route-div" *ngFor="let route of routeList">
+                        <div class="color-choice" [ngStyle]="{'background-color': route.Color.ColorCode}"></div>
+                        <div class="route-choice">{{route.Route.BusStop1.Name}} <mat-icon>arrow_forward</mat-icon> {{route.Route.BusStop2.Name}} -- {{route.Route.Duration}} min</div>
+                    </div>
+                    <div class="route-choice small-margin-top">KOKONAISAIKA: {{routeTotalDuration}} min</div>
+            </div>
+            
+    </div>
+    
+</div>

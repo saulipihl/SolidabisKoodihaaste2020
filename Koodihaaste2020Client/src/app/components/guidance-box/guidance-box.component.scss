@@ -1,0 +1,77 @@
+.guidance-box-container {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 40px;
+    border: 1px solid darkslategray;
+
+    -webkit-box-shadow: 1px 10px 24px -1px rgba(0,0,0,0.68); 
+    box-shadow: 1px 10px 24px -1px rgba(0,0,0,0.68);
+
+    width: 300px;
+    background-color: lightgray;
+}
+
+#toggle-guidance-box-text-button {
+    position: absolute;
+    right: 15px;
+    min-width: 0px;
+    min-height: 0px;
+    line-height: 0px;
+    padding: 3px;
+}
+
+#stop-error-message {
+    color: red;
+}
+
+#calculate-route-button {
+    display: block;
+    margin-top: 15px;
+}
+
+.color-choice {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+
+.route-choice {
+    padding-left: 20px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.route-choice .mat-icon {
+    font-size: 20px;
+    align-content: center;
+}
+
+.route-div {
+    display: flex;
+    align-items: center;
+}
+
+.small-margin-top {
+    margin-top: 20px;
+}
+
+.loading-icon {
+    animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+  #guidance-text-div {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
